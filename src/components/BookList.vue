@@ -15,6 +15,9 @@
           :key="book.isbn"
           :title="book.title"
           :isbn="book.isbn"
+          @btn-clicked-up="toggleBookmark(book.isbn)"
+          :isBookmarked="book.isBookmarked"
+          :buttonText="changeButtonText(book.isBookmarked)"
         />
       </tbody>
     </table>
@@ -35,6 +38,7 @@ export default {
           publisher: "Apress",
           price: "$28.75",
           numPages: 256,
+          isBookmarked: false,
         },
         {
           title: "Using WebPagetest",
@@ -43,6 +47,7 @@ export default {
           publisher: "O'Reilly Media",
           price: "$25.80",
           numPages: 214,
+          isBookmarked: false,
         },
         {
           title: "Web Scraping with Python",
@@ -51,6 +56,7 @@ export default {
           publisher: "O'Reilly Media",
           price: "$14.00",
           numPages: 256,
+          isBookmarked: false,
         },
         {
           title: "High Performance Mobile Web",
@@ -59,6 +65,7 @@ export default {
           publisher: "O'Reilly Media",
           price: "$7.00",
           numPages: 326,
+          isBookmarked: false,
         },
       ],
     };
@@ -66,6 +73,20 @@ export default {
   name: "BookList",
   components: {
     BookListRow,
+  },
+  methods: {
+    toggleBookmark(isbn) {
+      let bookIndex = this.books.findIndex((book) => book.isbn === isbn);
+      this.books[bookIndex].isBookmarked = !this.books[bookIndex].isBookmarked;
+    },
+    changeButtonText(bookmarkState) {
+      if (bookmarkState) {
+        return "Remove Bookmark";
+      }
+      if (!bookmarkState) {
+        return "Add Bookmark";
+      }
+    },
   },
 };
 </script>

@@ -2,7 +2,13 @@
   <tr class="table-item__table-row">
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
-    <td><BaseButton variant="secondary" text="Add Bookmark" /></td>
+    <td class="td_btn">
+      <BaseButton
+        variant="secondary"
+        :text="buttonText"
+        @btn-clicked="$emit('btn-clicked-up')"
+      />
+    </td>
   </tr>
 </template>
 
@@ -17,6 +23,12 @@ export default {
   props: {
     title: String,
     isbn: String,
+    buttonText: String,
+  },
+  methods: {
+    emit() {
+      this.$emit("btn-clicked-up");
+    },
   },
 };
 </script>
@@ -65,5 +77,8 @@ export default {
   margin-top: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 2px solid var(--primary-dark);
+}
+.td_btn {
+  width: 15%;
 }
 </style>

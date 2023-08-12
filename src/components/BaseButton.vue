@@ -1,8 +1,15 @@
 <template>
-  <button :class="cssClass">{{ text }}</button>
+  <button :class="cssClass" @click="$emit('btn-clicked')">
+    {{ text }}
+  </button>
 </template>
 <script>
 export default {
+  methods: {
+    emit() {
+      this.$emit("btn-clicked");
+    },
+  },
   computed: {
     cssClass() {
       return `btn btn--${this.variant}`;
@@ -12,11 +19,11 @@ export default {
   props: {
     text: {
       type: String,
-      default: "Click meee",
+      default: "Click me",
     },
     variant: {
       type: String,
-      default: "primary",
+      default: "secondary",
     },
   },
 };
@@ -28,6 +35,8 @@ export default {
   border-radius: 3px;
   padding: 5px;
   cursor: pointer;
+  width: 100%;
+  margin: auto;
 }
 
 .btn--primary {
