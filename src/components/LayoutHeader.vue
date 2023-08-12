@@ -92,6 +92,10 @@ export default {
     display: block;
   }
 
+  .header__bootcamp-link:hover {
+    color: rgb(223, 223, 223);
+  }
+
   .header__nav {
     margin: 0px;
   }

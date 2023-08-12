@@ -6,23 +6,24 @@
         <tr>
           <th class="table-item__table-head-name">Name</th>
           <th class="table-item__table-head--isbn">ISBN</th>
+          <th class="table-item__table-head--actions"></th>
         </tr>
       </thead>
       <tbody>
-        <tr
+        <BookListRow
           v-for="book in books"
           :key="book.isbn"
-          class="table-item__table-row"
-        >
-          <td>{{ book.title }}</td>
-          <td>{{ book.isbn }}</td>
-        </tr>
+          :title="book.title"
+          :isbn="book.isbn"
+        />
       </tbody>
     </table>
   </section>
 </template>
 
 <script>
+import BookListRow from "./BookListRow.vue";
+
 export default {
   data() {
     return {
@@ -63,6 +64,9 @@ export default {
     };
   },
   name: "BookList",
+  components: {
+    BookListRow,
+  },
 };
 </script>
 
@@ -77,6 +81,7 @@ export default {
   font-size: 0.9em;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   width: 100%;
+  margin: auto;
 }
 .table-item__table-head-name {
   width: 65%;
