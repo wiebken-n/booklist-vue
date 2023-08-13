@@ -5,11 +5,6 @@
 </template>
 <script>
 export default {
-  methods: {
-    emit() {
-      this.$emit("btn-clicked");
-    },
-  },
   computed: {
     cssClass() {
       return `btn btn--${this.variant}`;
@@ -17,15 +12,15 @@ export default {
   },
   name: "BaseButton",
   props: {
-    // text: {
-    //   type: String,
-    //   default: "Click me",
-    // },
     variant: {
       type: String,
       default: "secondary",
+      validator(value) {
+        return ["primary", "secondary"].includes(value);
+      },
     },
   },
+  emits: ["btn-clicked"],
 };
 </script>
 

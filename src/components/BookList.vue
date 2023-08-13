@@ -15,7 +15,6 @@
           :key="book.isbn"
           :title="book.title"
           :isbn="book.isbn"
-          @btn-clicked-up="toggleBookmark(book.isbn)"
           :isBookmarked="book.isBookmarked"
         >
           <template #actionCol>
@@ -100,9 +99,6 @@ export default {
       if (!bookmarkState) {
         return "Add Bookmark";
       }
-    },
-    emit() {
-      this.$emit("btn-clicked-up");
     },
   },
 };
