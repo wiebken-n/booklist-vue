@@ -17,8 +17,16 @@
           :isbn="book.isbn"
           @btn-clicked-up="toggleBookmark(book.isbn)"
           :isBookmarked="book.isBookmarked"
-          :buttonText="changeButtonText(book.isBookmarked)"
-        />
+        >
+          <template #actionCol>
+            <BaseButton variant="secondary" @click="toggleBookmark(book.isbn)">
+              <PlusIcon v-if="!book.isBookmarked" />
+              <MinusIcon v-else-if="book.isBookmarked" />{{
+                changeButtonText(book.isBookmarked)
+              }}</BaseButton
+            ></template
+          ></BookListRow
+        >
       </tbody>
     </table>
   </section>
@@ -26,6 +34,9 @@
 
 <script>
 import BookListRow from "./BookListRow.vue";
+import BaseButton from "./BaseButton.vue";
+import PlusIcon from "./PlusIcon.vue";
+import MinusIcon from "./MinusIcon.vue";
 
 export default {
   data() {
@@ -73,6 +84,9 @@ export default {
   name: "BookList",
   components: {
     BookListRow,
+    BaseButton,
+    PlusIcon,
+    MinusIcon,
   },
   methods: {
     toggleBookmark(isbn) {
@@ -86,6 +100,9 @@ export default {
       if (!bookmarkState) {
         return "Add Bookmark";
       }
+    },
+    emit() {
+      this.$emit("btn-clicked-up");
     },
   },
 };
@@ -112,17 +129,6 @@ export default {
 }
 .table-item__table-head-actions {
   width: 15%;
-}
-.table-item__table-row button {
-  opacity: 0;
-  padding: 5px;
-  transition: opacity 500ms;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.table-item__table-row:hover button {
-  opacity: 1;
 }
 .table-item__table thead tr {
   background-color: var(--primary);

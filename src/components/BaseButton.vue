@@ -1,6 +1,6 @@
 <template>
   <button :class="cssClass" @click="$emit('btn-clicked')">
-    {{ text }}
+    <slot />
   </button>
 </template>
 <script>
@@ -17,10 +17,10 @@ export default {
   },
   name: "BaseButton",
   props: {
-    text: {
-      type: String,
-      default: "Click me",
-    },
+    // text: {
+    //   type: String,
+    //   default: "Click me",
+    // },
     variant: {
       type: String,
       default: "secondary",
@@ -36,7 +36,10 @@ export default {
   padding: 5px;
   cursor: pointer;
   width: 100%;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  align-items: center;
 }
 
 .btn--primary {

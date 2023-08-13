@@ -3,32 +3,17 @@
     <td>{{ title }}</td>
     <td>{{ isbn }}</td>
     <td class="td_btn">
-      <BaseButton
-        variant="secondary"
-        :text="buttonText"
-        @btn-clicked="$emit('btn-clicked-up')"
-      />
+      <slot name="actionCol"></slot>
     </td>
   </tr>
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
-
 export default {
   name: "BookListRow",
-  components: {
-    BaseButton,
-  },
   props: {
     title: String,
     isbn: String,
-    buttonText: String,
-  },
-  methods: {
-    emit() {
-      this.$emit("btn-clicked-up");
-    },
   },
 };
 </script>
